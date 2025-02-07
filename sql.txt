@@ -1,0 +1,13 @@
+SELECT c.nom, COUNT(o.id) AS nombre_commandes
+FROM commandes o
+JOIN clients c ON o.client_id = c.id
+GROUP BY c.nom
+HAVING COUNT(o.id) > 5;
+
+///////////////////::::::://////:::::::::::::::
+
+SELECT p.nom, SUM(v.quantite) AS total_ventes
+FROM ventes v
+JOIN produits p ON v.id_produit = p.id
+GROUP BY p.nom
+HAVING SUM(v.quantite) > 100;
