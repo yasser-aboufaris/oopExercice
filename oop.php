@@ -1,34 +1,44 @@
 <?php
 
 
-class Vehicule {
-    private $model;
-    private $brand;
-    private $categorie;
+class Vehicle {
+    private string $model;
+    private string $brand;
+    private string $category;
 
-    public function __construct($model,$brand,$categorie){
-        $this->model=$model;
-        $this->brand=$brand;
-        $this->categorie=$categorie;
+
+    public function __construct(string $model, string $brand, string $category) {
+        $this->model = $model;
+        $this->brand = $brand;
+        $this->category = $category;
     }
 
 
+    public function displayInfo(): void {
+        echo "Model: {$this->model}, Brand: {$this->brand}, Category: {$this->category}";
+    }
+}
 
-    public function call (){
-        echo "my name is {$this->model} my brand is {$this->brand} my categorie is {$this->categorie}";
+$mercedes = new Vehicle("AMG_GT", "Mercedes-Benz", "Sports Car");
+$mercedes->displayInfo();
+
+echo "\n";
+
+class Motorcycle extends Vehicle {
+
+    public function displayInfo(): void {
+        parent::displayInfo();
+        echo " (This is a motorcycle.)";
+    }
+
+
+    public static function describe(): void {
+        echo "A motorcycle is a two-wheeled motor vehicle.";
     }
 }
 
-$mercedes = new vehicule ("AMG_GT","Mercedes-Benz","Sports Car");
-$mercedes->call();
+$motorcycle = new Motorcycle("Ninja ZX-10R", "Kawasaki", "Sport Bike");
+$motorcycle->displayInfo();
 
 
-class Moto extends Vehicule{
-    public static function moto (){
-        echo "moto";
-    }
-    
-    final public function moto(){
-        echo"im just a moto";
-    }
-}
+Motorcycle::describe();
